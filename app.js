@@ -16,16 +16,16 @@ d3.json(api_url)
     const circle = svg.selectAll('circle')
                       .data(data.features);
     
-    circle.attr('cx', (d, i) => d.properties.mag)
-          .attr('cy', (d, i) => (d.properties.mag)*18)
-          .attr('r', (d, i) => (d.properties.mag)*2)
-          .attr('fill', 'purple')
+    // circle.attr('cx', (d, i) => d.properties.mag)
+    //       .attr('cy', (d, i) => (d.properties.mag)*18)
+    //       .attr('r', (d, i) => (d.properties.mag)*2)
+    //       .attr('fill', (d) => (d.properties.alert))
 
     circle.enter()
           .append('circle')
           .attr('cx', (d, i) => (d.properties.mag)*42)
-          .attr('cy', (d, i) => (d.properties.mag)*45)
-          .attr('r', (d, i) => (d.properties.mag)*8)
-          .attr('fill', 'purple')
+          .attr('cy', (d, i) => Math.floor(Math.random() * 100) + d.properties.mag)
+          .attr('r', (d, i) => (d.properties.mag)*2)
+          .attr('fill', (d, i) => (d.properties.alert))
 
   })
