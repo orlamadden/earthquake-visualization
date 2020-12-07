@@ -16,16 +16,29 @@ d3.json(api_url)
     const circle = svg.selectAll('circle')
                       .data(data.features);
     
-    // circle.attr('cx', (d, i) => d.properties.mag)
-    //       .attr('cy', (d, i) => (d.properties.mag)*18)
-    //       .attr('r', (d, i) => (d.properties.mag)*2)
-    //       .attr('fill', (d) => (d.properties.alert))
+    circle.attr('cx', (d, i) => d.properties.mag)
+          .attr('cy', (d, i) => (d.properties.mag)*18)
+          .attr('r', (d, i) => (d.properties.mag)*2)
+          .attr('fill', (d) => (d.properties.alert))
 
     circle.enter()
           .append('circle')
           .attr('cx', (d, i) => Math.floor(Math.random() * 200) + d.properties.mag*i)
           .attr('cy', (d, i) => Math.floor(Math.random() * 100) + d.properties.mag)
-          .attr('r', (d, i) => (d.properties.mag)*2)
-          .attr('fill', (d, i) => (d.properties.alert))
-
-  })
+          .attr('r', (d, i) => (d.properties.mag) * 2)
+          .style('top', 156)
+          .on('mouseover', function(d, i, n){
+            d3.select(n[i])
+            .transition()
+            .duration(100)//in millisecond
+            .style("opacity", 0.7)
+            console.log(d.properties.mag);
+          })
+          .on('mouseout', function(d, i, n){
+            d3.select(n[i])
+            .transition()
+            .duration(100)//in millisecond
+            .style("opacity", 1)
+        })
+        .attr("fill", (d, i) => d.properties.alert);
+  });
