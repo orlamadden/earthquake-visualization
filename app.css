@@ -6,3 +6,15 @@ body {
 circle {
     pointer-events: all;
 }
+
+div.tooltip {
+    position: absolute;
+    text-align: left;
+    width: 130px;
+    height: 150px;
+    padding: 2px;
+    border-radius: 10px;
+    background: #5b76ff;
+    color: #fff;
+    pointer-events: none;
+}
